@@ -16,9 +16,17 @@ class SignupForm(forms.Form):
     last_name=forms.CharField(min_length=2, max_length=50)
     email=forms.CharField(min_length=6, max_length=70, widget=forms.EmailInput())
 
+    def clean_email(self):
+        #email validation
+        email=self.cleaned_data['email'].lower()
+        email_taken=User.objects.filter(email=email).exists()
+        if email_taken:
+            raise forms.ValidationError('email is already in use.')
+        return email
+    
     def clean_username(self):
         #username must be unique.
-        username=self.cleaned_data['username']
+        username=self.cleaned_data['username'].lower()
         username_taken=User.objects.filter(username=username).exists()
         if username_taken:
             raise forms.ValidationError('username is already in use.')
