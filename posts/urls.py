@@ -16,7 +16,7 @@ urlpatterns=[
 
     path(
         route='posts/new/',
-        view=views.create_post, 
+        view=views.CreatedPostView.as_view(), 
         name='create'
         ),
 
@@ -26,7 +26,6 @@ urlpatterns=[
         view=views.PostDetailView.as_view(),
         name='detail'
         ),
-        
     
     
 ]
