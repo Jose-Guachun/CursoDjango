@@ -3,7 +3,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 #FORMS
 from posts.forms import PostForm
 
@@ -12,11 +12,19 @@ from posts.forms import PostForm
 from posts.models import Post
 
 class PostFeedView(LoginRequiredMixin, ListView):
+    #retornar todas las publicaciones
     template_name='posts/feed.html'
     model=Post
     ordering=('-created',)
-    paginate_by=5
+    paginate_by=20
     context_object_name='posts'
+
+
+class PostDetailView(LoginRequiredMixin, DetailView):
+    #retornar detalle de post
+    template_name='posts/detail.html'
+    queryset=Post.objects.all()
+    context_object_name='post'
 
 
 @login_required

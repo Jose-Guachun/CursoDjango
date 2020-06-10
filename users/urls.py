@@ -1,10 +1,10 @@
-#post Urls
+#Users Urls
 
 #Django
 from django.urls import path
 
 
-#views
+#importaciones de apps
 from users import views
 
 urlpatterns=[
