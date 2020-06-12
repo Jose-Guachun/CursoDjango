@@ -1,2 +1,2 @@
 # CursoDjango
-hoa de empezar
+Creacion de una copia de instagram Platzigram
